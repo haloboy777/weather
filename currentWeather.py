@@ -1,3 +1,4 @@
+apikey = "Upload your AccuWeather Dev Key Here"
 try:
     import requests
     import dateutil.parser
@@ -5,8 +6,6 @@ except ModuleNotFoundError:
     print("Install all the requirements first!")
     print("See github page for the requirements!")
     exit()
-
-apikey = "GET IT FROM ACCUWEATHER!!!!!!"
 
 """Ask for a city"""
 city = input("Enter the city: ")
@@ -18,9 +17,10 @@ except ConnectionError:
     exit()
 """Give a list and ask for the correct one(if there is only one response, proceed without confirmation)"""
 i = 0
-print(cityList.json())
+#print(cityList.json())
 if not cityList.json():
     print("There is no city with name - "+city)
+    exit()
 else:
     print("Choose a Place From The following list: ")
     for xcity in cityList.json():
@@ -62,3 +62,23 @@ print("Headline for 5 days: "+fiveDay.json()['Headline']['Text'])
 for dateData in fiveDay.json()['DailyForecasts']:
     dateToday = dateutil.parser.parse(dateData['Date'])
     print("Date: "+dateToday.strftime("%d,%B(%A)"))
+    #sunrise
+    #sunset
+    sunRise = dateutil.parser.parse(dateData['Sun']['Rise'])
+    sunSet = dateutil.parser.parse(dateData['Sun']['Set'])
+    print("\tSun:\n\t\tRise:\t"+sunRise.strftime("%-I:%-M:%-S %p")+"\n\t\tSet:\t"+sunSet.strftime("%-I:%-M:%-S %p"))
+    #temprature (max-min)
+    try:
+        print("\tTemperature:\n\t\tMaximum: "+str(dateData['Temperature']['Maximum']['Value'])+"°C"+"\n\t\tMinimum: "+str(dateData['Temperature']['Minimum']['Value'])+"°C")
+    except:
+        print("Temperature not avaiable for this area")
+#day->longPhrase
+
+    try:
+        print("\tDay\n\t\tPridictions: "+dateData['Day']['LongPhrase']+"\n\t\tWind:\n\t\t\tSpeed: "+str(dateData['Day']['Wind']['Speed']['Value'])+"km/h\n\t\t\tDirection: "+dateData['Day']['Wind']['Direction']['English'])
+    except:
+        print("\tDay data not avaiable for this area")
+    try:
+        print("\tNight\n\t\tPridictions: "+dateData['Night']['LongPhrase']+"\n\t\tWind:\n\t\t\tSpeed: "+str(dateData['Night']['Wind']['Speed']['Value'])+"km/h\n\t\t\tDirection: "+dateData['Night']['Wind']['Direction']['English'])
+    except:
+        print("\tNight data not avaiable for this area")
