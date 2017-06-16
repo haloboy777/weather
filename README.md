@@ -6,7 +6,7 @@ Get current Weather conditons of a searchable place
 * request 2.10+
 * dateutil 2.6+
 
-# Usage
+## Usage
 * First get dev-api key from [AccuWeather Dev Portal](https://developer.accuweather.com/)
   * Sign-in 
   * Click on My-Apps
