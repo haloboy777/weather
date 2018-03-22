@@ -12,7 +12,7 @@ Get current Weather conditons of a searchable place
   * Click on My-Apps
   * Create a new app
   * New key will be there
-  * *If you can't get the dev key just copy from here but* **use this sparingly** - [Key](https://haloboy777.me/accukey.txt)
+  * *If you can't get the dev key just copy from here but* **use this sparingly** - [Key](http://ayushsingh.ml/accukey.txt)
 * Paste it on the first line
 * Make sure you have installed the requirements
 * Now run the application
